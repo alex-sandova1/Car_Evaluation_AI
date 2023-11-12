@@ -2,6 +2,8 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Read the data
 data = pd.read_csv('car.data', names=['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class'])
@@ -44,4 +46,14 @@ clf.fit(X_train, y_train)
 print(clf.best_params_)
 print(clf.best_score_)
 print(clf.score(X_test, y_test))
+
+#tune penalty parameter using GridSearchCV
+parameters = {'penalty': ['l1', 'l2']}
+clf = GridSearchCV(model, parameters, cv=5)
+clf.fit(X_train, y_train)
+print(clf.best_params_)
+print(clf.best_score_)
+print(clf.score(X_test, y_test))
+
+
 
