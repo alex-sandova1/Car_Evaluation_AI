@@ -30,7 +30,7 @@ y_pred = model.predict(X_val)
 
 #evaluate the model
 score = model.score(X_val, y_val)
-print(score)
+#print(score)
 
 #tune max_depth parameter using GridSearchCV
 parameters = {'max_depth': [2, 4, 6, 8, 10]}
@@ -39,4 +39,18 @@ clf.fit(X_train, y_train)
 print(clf.best_params_)
 print(clf.best_score_)
 print(clf.score(X_test, y_test))
- 
+
+print(" ")
+
+#tune min_samples_split parameter using GridSearchCV
+parameters = {'min_samples_split': [2, 4, 6, 8, 10]}
+clf = GridSearchCV(model, parameters, cv=5)
+clf.fit(X_train, y_train)
+print(clf.best_params_)
+print(clf.best_score_)  
+print(clf.score(X_test, y_test))
+
+#evaluate the model
+score = model.score(X_test, y_test)
+#print(score)
+
