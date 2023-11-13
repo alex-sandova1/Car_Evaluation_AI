@@ -52,5 +52,5 @@ print(clf.score(X_test, y_test))
 
 #evaluate the model
 score = model.score(X_test, y_test)
-#print(score)
+print(score)
 

@@ -22,6 +22,7 @@ X_train = pd.get_dummies(X_train)
 X_test = pd.get_dummies(X_test)
 X_val = pd.get_dummies(X_val)
 
+#starts work on the OvR classifier
 clf = OneVsRestClassifier(LogisticRegression())
 clf.fit(X_train, y_train)
 grid_values = {'estimator__C': [0.001, 0.01, 0.1, 1]}
