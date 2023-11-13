@@ -24,26 +24,24 @@ X_val = pd.get_dummies(X_val)
 
 clf = OneVsRestClassifier(LogisticRegression())
 clf.fit(X_train, y_train)
+grid_values = {'estimator__C': [0.001, 0.01, 0.1, 1]}
+grid_search = GridSearchCV(clf, param_grid=grid_values, cv=5)
+grid_search.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 
-print("Accuracy score: ", accuracy_score(y_test, y_pred))
-print(" ")
+# accuracy before tuning hyperparameters
+print("Accuracy before tuning hyperparameters:", accuracy_score(y_test, y_pred))
 
-#tune C parameter using GridSearchCV
-parameters = {'estimator__C': [0.001, 0.01, 0.1, 1]}
-clf = GridSearchCV(clf, parameters, cv=5)
+###############################################################tune hyperparameters
+
+#tune solver hyperparameter
+clf = OneVsRestClassifier(LogisticRegression())
 clf.fit(X_train, y_train)
-print(clf.best_params_)
-print(clf.best_score_)
-print(clf.score(X_test, y_test))
-print(" ")
+grid_values = {'estimator__solver': ['newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga']}
 
-#tune penalty parameter using GridSearchCV
-parameters = {'estimator__penalty': ['l1', 'l2']}
-clf = GridSearchCV(clf, parameters, cv=5)
-clf.fit(X_train, y_train)
-print(clf.best_params_)
-print(clf.best_score_)
-print(clf.score(X_test, y_test))
-print(" ")
+grid_search = GridSearchCV(clf, param_grid=grid_values, cv=5)
+grid_search.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
 
+# accuracy after tuning hyperparameters
+print("Accuracy after tuning hyperparameters:", accuracy_score(y_test, y_pred))
