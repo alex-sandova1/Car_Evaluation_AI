@@ -18,10 +18,13 @@ y = data['class']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25)
 
-#convert string data to numerical data
+#convert string data to numberical data vhigh=4, high=3, med=2, low=1
 X_train = pd.get_dummies(X_train)
 X_test = pd.get_dummies(X_test)
 X_val = pd.get_dummies(X_val)
+#display X_train data
+print(X_train) #shows that data was converted correctly
+
 
 #fit the model
 model = LogisticRegression()
@@ -48,11 +51,10 @@ print(clf.best_score_)
 print(clf.score(X_test, y_test))
 
 #tune penalty parameter using GridSearchCV
-parameters = {'penalty': ['l1', 'l2']}
+parameters = {'penalty': [ 'l2']}
 clf = GridSearchCV(model, parameters, cv=5)
 clf.fit(X_train, y_train)
 print(clf.best_params_)
 print(clf.best_score_)
 print(clf.score(X_test, y_test))
 
-#
