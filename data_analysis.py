@@ -14,13 +14,18 @@ print("Number of duplicate rows: ", dups)
 #count number of vgood, good, acc, unacc
 print(data['class'].value_counts())
 
-#display data in a pie chart
+#displays data in a pie chart
 data['class'].value_counts().plot(kind='pie', autopct='%1.0f%%', colors=['red', 'green', 'blue', 'yellow'])
 plt.title('Class Distribution')
 plt.show()
 
-
-
-
-
+#displays how often each attribute valye appears on each class on a bar graph
+for col in data.columns:
+    if col != 'class':
+        pd.crosstab(data[col], data['class']).plot(kind='bar')
+        plt.title(col + ' by Class')
+        plt.xlabel(col)
+        plt.ylabel('Frequency')
+        plt.show()
+        
 
