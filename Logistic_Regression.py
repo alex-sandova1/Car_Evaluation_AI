@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
@@ -58,3 +59,5 @@ print(clf.best_params_)
 print(clf.best_score_)
 print(clf.score(X_test, y_test))
 
+#graph the data
+plt.scatter(X_train['buying_high'], y_train, color='black')

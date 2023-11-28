@@ -1,6 +1,7 @@
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
+from sklearn import tree
 import pandas as pd
 
 # Read the data
@@ -54,3 +55,5 @@ print(clf.score(X_test, y_test))
 score = model.score(X_test, y_test)
 print(score)
 
+#create a visualization of the tree
+tree.plot_tree(model)
