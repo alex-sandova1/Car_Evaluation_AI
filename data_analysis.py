@@ -28,4 +28,14 @@ for col in data.columns:
         plt.ylabel('Frequency')
         plt.show()
         
+#scatter plot of each class by each attribute
+for col in data.columns:
+    if col != 'class':
+        plt.scatter(data[col], data['class'])
+        plt.title(col + ' by Class')
+        plt.xlabel(col)
+        plt.ylabel('Class')
+        plt.show()        
+
+
 
